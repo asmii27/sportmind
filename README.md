@@ -1,160 +1,178 @@
-# SportMind — AI Multi-Agent Football Analytics
+# ⚽ SportMind
 
-SportMind is a football analytics platform that combines six specialized AI agents with transparent, formula-driven statistical models to generate evidence-backed insights for team management decisions.
+*What if a football club's entire analytics department fit in a browser tab?*
 
-The core design principle: **AI agents interpret computed statistics, not invent them.** Every metric shown — goals-per-90 z-scores, salary efficiency ratios, workload indices — is derived from an explicit formula documented on the in-app Methodology page. The LLM layer narrates and synthesizes; it does not generate numbers.
+[![Live](https://img.shields.io/badge/Live-sportmind.onrender.com-00d4aa?style=for-the-badge)](https://sportmind.onrender.com)
+[![Code](https://img.shields.io/badge/Code-asmii27/sportmind-181717?style=for-the-badge&logo=github)](https://github.com/asmii27/sportmind)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
----
-
-## What It Does
-
-Select a team, budget, and objective. Six agents analyze the squad independently, then the Executive Agent synthesizes their findings into a strategic recommendation.
-
-| Agent | Responsibility |
-|---|---|
-| Scout | Talent identification and transfer value |
-| Performance | Form trends and z-score analysis |
-| Tactics | Formation optimization and lineups |
-| Injury | Workload and fatigue index |
-| Finance | Salary efficiency scoring |
-| Executive | Final synthesis and risk assessment |
+</div>
 
 ---
 
-## Analytics & Methodology
+SportMind deploys six AI agents — Scout, Performance, Tactics, Injury, Finance, and Executive — each analyzing a different dimension of your football squad. They think independently, then the Executive Agent reads all five reports and delivers a single, synthesized recommendation with honest risk assessment.
 
-All metrics are computed via explicit formulas — see the in-app **Methodology** page for full documentation.
-
-**Goals Per 90 (Z-Score)**
-```
-Goals/90 = (Goals / Minutes) × 90
-Z-Score  = (Player Value − Positional Mean) / Standard Deviation
-```
-Positive z-scores indicate above-average output for the position. Strikers are only compared to strikers.
-
-**Salary Efficiency**
-```
-Efficiency = Predicted Performance Score / (Salary / Market Value)
-```
-Position-adjusted. Identifies undervalued players relative to wage cost.
-
-**Workload / Fatigue Index**
-```
-Workload = Recent Minutes (last 5 matches) / Season Average Minutes
-```
-Values above 1.0 indicate above-normal load. Relative to each player's own baseline, not an absolute threshold.
-
-**Data Coverage**
-
-Headline players with verified 2023-24 season stats (cross-checked against FBref / Premier League official data):
-- Erling Haaland — 27 goals, 31 appearances (Golden Boot)
-- Mohamed Salah — 18 goals, 9 assists, 34 appearances
-- Bukayo Saka — 16 goals, 9 assists, 35 appearances
-
-Remaining squad-depth metrics use realistic seeded baseline data, clearly labelled in source code and disclosed on the Methodology page. No speculative projections (ROI, trophy counts, confidence scores above 75%) are presented.
+The twist: none of the agents are allowed to make up numbers. Every figure they analyze — goals per 90, salary efficiency, workload index — is computed from a formula before the AI ever sees it. The agents do what analysts actually do: they interpret data and argue for a conclusion. The math is done separately, transparently, and documented on the [Methodology page](https://sportmind.onrender.com/methodology) for anyone to verify.
 
 ---
 
-## Tech Stack
+## See it in action
+
+**[sportmind.onrender.com](https://sportmind.onrender.com)**
+
+Pick Real Madrid, Arsenal, Liverpool, Barcelona, or Manchester City. Set a budget. Choose an objective. Watch the war room come alive.
+
+---
+
+## The agents
+
+| | Agent | Specialty |
+|-|-------|-----------|
+| 🧠 | Scout | Talent gaps, transfer targets, market value |
+| 📈 | Performance | Form trends, statistical over/underperformance |
+| ⚙️ | Tactics | Formation optimization, lineup selection |
+| 🛡️ | Injury | Fatigue index, workload management |
+| 💰 | Finance | Salary efficiency, wage-to-output ratio |
+| ⚡ | Executive | Synthesizes all five into one recommendation |
+
+---
+
+## The analytics
+
+All metrics use explicit, auditable formulas. Full documentation on the [Methodology page](https://sportmind.onrender.com/methodology).
+
+```
+Goals Per 90 — Z-Score
+─────────────────────────────────────────────
+Z = (Goals/90 − positional mean) / std dev
+
+Strikers compared to strikers. Wingers to wingers.
+A positive score means genuinely above average — not just above the league mean.
+```
+
+```
+Salary Efficiency
+─────────────────────────────────────────────
+Efficiency = Predicted Performance / (Salary / Market Value)
+
+Finds players giving more than their contract suggests they should.
+```
+
+```
+Workload Index
+─────────────────────────────────────────────
+Workload = Recent Minutes (last 5) / Season Average Minutes
+
+Relative to each player's own baseline.
+Haaland playing 90 minutes isn't comparable to a squad player doing the same.
+```
+
+### Real numbers in this build
+
+| Player | G | A | Apps | Source |
+|--------|---|---|------|--------|
+| Erling Haaland | 27 | 5 | 31 | Premier League official — 2023-24 Golden Boot |
+| Mohamed Salah | 18 | 9 | 34 | Liverpool FC official |
+| Bukayo Saka | 16 | 9 | 35 | StatMuse + Arsenal official |
+
+Remaining squad data uses seeded baselines within realistic ranges. Disclosed on the Methodology page and flagged in source code.
+
+---
+
+## What you get
+
+- A war room interface that makes analytics feel like mission control
+- Six agent panels that animate through the thinking process in real time
+- Charts that use real player names — not "P1, P2, P3"
+- A Player Comparison Matrix with head-to-head attribute breakdowns
+- A natural language query interface for plain-English questions
+- A what-if scenario simulator for transfers, injuries, and budget shifts
+- A Methodology page that shows every formula with a worked example
+
+---
+
+## Honesty section
+
+Confidence gauges in SportMind read 65–75%, not 90+. That's intentional.
+
+Three players have verified real stats. The rest use seeded baselines. The app says so — on the Methodology page, in the source code comments, and in the confidence gauge values themselves. No ROI projections. No trophy counts. No numbers that can't be traced to a formula.
+
+If a judge, coach, or analyst checks one figure against a real source and finds it wrong, the whole system loses credibility. That's the design constraint that shaped everything here.
+
+---
+
+## 🛠️ Tech Stack
 
 **Frontend**
-- React 19 + Vite
-- Tailwind CSS 4
-- Framer Motion
-- Recharts
-- shadcn/ui + Radix UI
+- React 19 + TypeScript + Vite
+- Tailwind CSS + Framer Motion
+- Recharts + shadcn/ui
 
 **Backend**
 - Express.js + tRPC
-- MySQL with Drizzle ORM
-- Anthropic Claude API (claude-sonnet-4-6)
+- MySQL + Drizzle ORM
+- Anthropic Claude API
 
 ---
 
-## Getting Started
+##  Getting Started
 
-**Prerequisites**
-- Node.js 22+
-- MySQL database
-- Anthropic API key
+**Prerequisites:** Node.js 20+, MySQL database, Anthropic API key
 
-**Install**
 ```bash
+# Clone
+git clone https://github.com/asmii27/sportmind.git
+cd sportmind
+
+# Install
 npm install --legacy-peer-deps
-```
 
-**Environment variables**
-```bash
-DATABASE_URL=mysql://user:password@host:3306/sportmind
-ANTHROPIC_API_KEY=your_key_here
-```
+# Environment
+cp .env.example .env
+# Add: DATABASE_URL, ANTHROPIC_API_KEY
 
-**Database setup**
-```bash
+# Database
 npx drizzle-kit generate
 npx drizzle-kit migrate
 node server/seed-data.mjs
-```
 
-**Run**
-```bash
+# Run
 npm run dev
-# Open http://localhost:5000
+# → http://localhost:3000
 ```
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 sportmind/
 ├── client/src/
 │   ├── pages/
-│   │   ├── Home.tsx                  # Landing page
-│   │   ├── MissionControl.tsx        # Analysis dashboard
-│   │   ├── QueryInterface.tsx        # Natural language queries
-│   │   ├── ScenarioSimulator.tsx     # What-if scenarios
-│   │   └── Methodology.tsx           # Formula documentation
+│   │   ├── Home.tsx               # Landing page
+│   │   ├── MissionControl.tsx     # Analysis dashboard
+│   │   ├── QueryInterface.tsx     # Natural language queries
+│   │   ├── ScenarioSimulator.tsx  # What-if scenarios
+│   │   └── Methodology.tsx        # Formula documentation
 │   └── components/
 │       ├── AnalysisVisualizations.tsx
 │       └── PlayerComparisonMatrix.tsx
 ├── server/
-│   ├── ai-agents.ts                  # Six agent prompts + pipeline
-│   ├── ml-models.ts                  # Statistical formulas
-│   ├── demo-data.ts                  # Demo analysis results
-│   └── seed-data.mjs                 # Database seeding
-└── drizzle/schema.ts                 # Database schema
+│   ├── ai-agents.ts               # Six agent pipeline
+│   ├── ml-models.ts               # Statistical formulas
+│   ├── demo-data.ts               # Pre-computed demo results
+│   └── seed-data.mjs              # Database seeding (real stats)
+└── drizzle/schema.ts              # Database schema
 ```
 
 ---
 
-## Deployment
+## Built for
 
-Deployable on any Node-compatible host with a MySQL database.
-
-Recommended: **Railway** (railway.app) — supports Node + managed MySQL, free tier available.
-
-After deploying, run `node server/seed-data.mjs` via the host shell to populate the database.
+AQX Sports Analytics Data Bowl 2.0 · July 2026
 
 ---
 
-## Data Honesty
+<div align="center">
 
-This project explicitly avoids presenting LLM-generated numbers as computed statistics. If you read the source code you will find:
-
-- `VERIFIED_REAL_STATS` block in `seed-data.mjs` separating real from seeded data
-- `dataSource: 'seeded-baseline'` flags on non-verified player records
-- No speculative ROI, trophy-impact, or absolute injury-risk numbers anywhere in the UI
-- Confidence gauges reflect data coverage (65–75%), not model certainty
-
----
-
-## Background
-
-Built for the **AQX Sports Analytics Data Bowl 2.0** (July 2026). The brief was open — any sport, any analytical angle. Football was chosen for data availability and the richness of multi-dimensional player evaluation (offensive output, defensive contribution, physical workload, financial efficiency).
-
----
-
-## License
-
-MIT
+[Live Demo](https://sportmind.onrender.com) · [Methodology](https://sportmind.onrender.com/methodology) · [GitHub](https://github.com/asmii27/sportmind)
