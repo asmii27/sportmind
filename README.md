@@ -1,8 +1,8 @@
-# SportMind : AI Multi-Agent Football Analytics
+# SportMind — AI Multi-Agent Football Analytics
 
 SportMind is a football analytics platform that combines six specialized AI agents with transparent, formula-driven statistical models to generate evidence-backed insights for team management decisions.
 
-The core design principle: **AI agents interpret computed statistics, not invent them.** Every metric shown, goals-per-90 z-scores, salary efficiency ratios, workload indices is derived from an explicit formula documented on the in-app Methodology page. The LLM layer narrates and synthesizes; it does not generate numbers.
+The core design principle: **AI agents interpret computed statistics, not invent them.** Every metric shown — goals-per-90 z-scores, salary efficiency ratios, workload indices — is derived from an explicit formula documented on the in-app Methodology page. The LLM layer narrates and synthesizes; it does not generate numbers.
 
 ---
 
