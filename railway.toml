@@ -3,7 +3,10 @@ builder = "nixpacks"
 buildCommand = "npm install --legacy-peer-deps && npm run build"
 
 [nixpacks]
-aptPkgs = ["nodejs"]
+providers = ["node"]
+
+[nixpacks.variables]
+NODE_VERSION = "20"
 
 [deploy]
 startCommand = "npm start"
